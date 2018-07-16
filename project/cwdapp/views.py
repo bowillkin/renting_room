@@ -186,22 +186,27 @@ def Search(request, a, p, s, n):
         house = House.objects.all()
         if int(a) != 0:
             house = house.filter(area_id=a)
+            a = a
         else:
             house = house
+            a = 0
 
         if p != '0':
             price_min = int(p.split('-')[0])
             price_max = int(p.split('-')[1])
             house = house.filter(price__gte=price_min, price__lt=price_max)
+            p = p
         else:
             house = house
-
+            p = 0
         if s != '0':
             types = HouseType.objects.filter(type_name__startswith=s)  # 字段__startswith = value：该字段以value开头的
             type_ids = [i.type_id for i in types]
             house = house.filter(type_id__in=type_ids)
+            s = s
         else:
             house = house
+            s = 0
         # 获取地区
         positions = Area.objects.all()
         # 获取房屋类型钱4个字段（如：两室一厅）
@@ -231,4 +236,7 @@ def Search(request, a, p, s, n):
                        'houses': houses,  # 房屋详情十条
                        'the_page': the_page,  # 当前页面
                        'total_page': total_page,  # 总页面
-                       'all_record': all_record})  # 一共多少条
+                       'all_record': all_record,# 一共多少条
+                       'a': a,
+                       'p': p,
+                       's': s})
