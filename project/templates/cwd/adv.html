@@ -46,9 +46,9 @@
                 {% if user %}
                     {% for h in house %}
                         <tr id="awe{{ h.house_id }}">
-                            <td>{{ h.house_id }}</td>
-                            <td><img src="{{ h.index_img_url }}" alt="" width="120" height="50"/></td>
-                            <td>{{ h.title }}</td>
+                            <td><a href="/detail/detail/{{ h.house_id }}/">{{ h.house_id }}</a></td>
+                            <td><a href="/detail/detail/{{ h.house_id }}/"><img src="{{ h.index_img_url }}" alt="" width="120" height="50"/></a></td>
+                            <td><a href="/detail/detail/{{ h.house_id }}/">{{ h.title }}</a></td>
                             <td>{{ h.address }}</td>
                             <td>{{ h.house_status }}</td>
                             <td>
@@ -77,7 +77,6 @@
                         success: function (data) {
                             if(data.code=='200')
                             {alert(data.msg);
-                            {#window.location.reload()表示刷新页面#}
                             $('#awe'+id).remove()}{#表示移除元素#}
                         },
                         error: function (data) {

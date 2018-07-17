@@ -153,10 +153,10 @@ $(document).ready(function () {
         if(data.code == 200){
             console.log(data.user)
 
-            $('#abcd').html('<img src="/'+data.user +'" id="my_img" alt="读取头像失败">\n' + '<span>我的账户</span>')
+            $('#abcd').html('<a href="/cwd/myself/"><img src="/'+data.user +'" id="my_img" alt="读取头像失败"></a>\n' + '<span>我的账户</span>')
         }
         else{
-            $('#abcd').html('<img src="images/zxcf_perinfo.png" alt="">\n' + '<span>我的账户</span>')
+            $('#abcd').html('<img src="/static/images/zxcf_perinfo.png" alt="">\n' + '<span>我的账户</span>')
         }
     })
 })

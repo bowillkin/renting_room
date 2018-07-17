@@ -110,9 +110,13 @@ def My_image(request):
         user = Get_user(request)
         data = {}
         if user:
-            user = user.avatar
-            data['user'] = user.url.split('/media/')[1]
-            data['code'] = 200
+            if user.avatar:
+                user = user.avatar
+                data['user'] = user.url.split('/media/')[1]
+                data['code'] = 200
+                return JsonResponse(data)
+            else:
+                data['code'] = 100
             return JsonResponse(data)
         else:
             data['code'] = 100

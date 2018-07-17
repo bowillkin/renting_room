@@ -49,8 +49,8 @@
 
                         <tr id="awe{{ h.house_id }}">
                             <td>{{ h.house_id }}</td>
-                            <td><img src="{{ h.index_img_url }}" alt="" width="120" height="50"/></td>
-                            <td>{{ h.title }}</td>
+                            <td><a href="/detail/detail/{{ h.house_id }}/"><img src="{{ h.index_img_url }}" alt="" width="120" height="50"/></a></td>
+                            <td><a href="/detail/detail/{{ h.house_id }}/">{{ h.title }}</a></td>
                             <td>{{ h.address }}</td>
                             <td>{{ h.price }}</td>
                             <td>{{ h.house_status }}</td>
