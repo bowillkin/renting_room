@@ -6,12 +6,12 @@ from django.shortcuts import render
 from app.models import House, User, Collect, HouseDetail, HouseFacility, HouseImg, Area, HouseType
 
 
-
 # 写入取session方法
 def Get_user(a):
     user = a.session.get('account')
     user_id = User.objects.filter(account=user).first()
     return user_id
+
 
 # 首页
 def Index(request):
@@ -102,6 +102,21 @@ def Del(request):
             HouseImg.objects.filter(house_id=houses).delete()
             House.objects.filter(house_id=houses).delete()
             return JsonResponse({'code': 200, 'msg': '已删除发布房源'})
+
+
+# 头像传递
+def My_image(request):
+    if request.method == 'GET':
+        user = Get_user(request)
+        data = {}
+        if user:
+            user = user.avatar
+            data['user'] = user.url.split('/media/')[1]
+            data['code'] = 200
+            return JsonResponse(data)
+        else:
+            data['code'] = 100
+            return JsonResponse(data)
 
 
 # 实名认证
@@ -233,7 +248,7 @@ def Search(request, a, p, s, n):
                        'houses': houses,  # 房屋详情十条
                        'the_page': the_page,  # 当前页面
                        'total_page': total_page,  # 总页面
-                       'all_record': all_record,# 一共多少条
+                       'all_record': all_record,  # 一共多少条
                        'a': a,
                        'p': p,
                        's': s})

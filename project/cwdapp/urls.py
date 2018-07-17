@@ -16,6 +16,8 @@ urlpatterns = [
     url('^myhouse/', views.My_house),
     # ajax跳转到删除方法
     url('^del/', views.Del),
+    # 静态跳转头像图片
+    url('^img/', views.My_image),
     # 房屋查询页面
     url('^find/(\d+)/', views.Find),
     url('^search/(.+)/(.+)/(.+)/(\d+)/', views.Search),

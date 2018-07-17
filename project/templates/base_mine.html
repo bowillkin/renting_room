@@ -32,11 +32,9 @@
         <div class="zxcf_nav clearfix px1000">
             <div class="zxcf_nav_l fl">
                 <img src="{% static 'images/zxcf_logo.jpg' %}" alt=""></div>
-            <a href="/cwd/myself/" style="height: auto; width: auto;">
-            <div class="zxcf_nav_r fr">
-                <img src="{% static 'images/zxcf_perinfo.png' %}" alt="">
-                <span>我的账户</span>
-            </div></a>
+            <div id="abcd" class="zxcf_nav_r fr" >
+
+            </div>
         </div>
     </div>
     <div class="zxcf_menu_wper">
@@ -145,5 +143,23 @@
             </p>
         </div>
     </div>
+{% endblock %}
+{% block JS %}
+<script type="text/javascript">
+$(document).ready(function () {
+    $.get('/cwd/img/',function (data) {
+
+
+        if(data.code == 200){
+            console.log(data.user)
+
+            $('#abcd').html('<img src="/'+data.user +'" id="my_img" alt="读取头像失败">\n' + '<span>我的账户</span>')
+        }
+        else{
+            $('#abcd').html('<img src="images/zxcf_perinfo.png" alt="">\n' + '<span>我的账户</span>')
+        }
+    })
+})
+</script>
 {% endblock %}
 

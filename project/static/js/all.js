@@ -84,3 +84,4 @@ $(".notic_secl_ul li").click(function()
 
 	
 });
+
