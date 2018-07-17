@@ -12,23 +12,26 @@
                     <div class="clearfix clear" style="font-size: 20px">
                         {#                      {% for data in latest_data %}#}
                         <ul>区域:
-                        <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
-                            {% for p in positions %}
-                                <a href="/cwd/search/{{ p.area_id }}/0/0/1/" style="margin: 0px 20px;font-size: 15px">{{ p.name }}</a>
+                            <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
+                            {% for po in positions %}
+                                <a href="/cwd/search/{{ po.area_id }}/{{ p }}/{{ s }}/1/"
+                                   style="margin: 0px 20px;font-size: 15px">{{ po.name }}</a>
                             {% endfor %}
                         </ul>
                         <ul>价格:
                             <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
-                            <a href="/cwd/search/0/0-500/0/1/" style="margin: 0px 20px;font-size: 15px">500元以下</a>
-                            <a href="/cwd/search/0/500-1000/0/1/" style="margin: 0px 20px;font-size: 15px">500-1000元</a>
-                            <a href="/cwd/search/0/1000-2000/0/1/" style="margin: 0px 20px;font-size: 15px">1000-2000元</a>
-                            <a href="/cwd/search/0/2000-3000/0/1/" style="margin: 0px 20px;font-size: 15px">2000-3000元</a>
-                            <a href="/cwd/search/0/3000-1000000/0/1/" style="margin: 0px 20px;font-size: 15px">3000以上元</a>
+                            <a href="/cwd/search/{{ a }}/0-500/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">500元以下</a>
+                            <a href="/cwd/search/{{ a }}/500-1000/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">500-1000元</a>
+                            <a href="/cwd/search/{{ a }}/1000-2000/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">1000-2000元</a>
+                            <a href="/cwd/search/{{ a }}/2000-3000/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">2000-3000元</a>
+                            <a href="/cwd/search/{{ a }}/3000-1000000/{{ s }}/1/"
+                               style="margin: 0px 20px;font-size: 15px">3000以上元</a>
                         </ul>
                         <ul>房型:
-                        <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
+                            <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
                             {% for n in new_type %}
-                                <a href="/cwd/search/0/0/{{ n }}/1/" style="margin: 0px 10px;font-size: 15px">{{ n }}</a>
+                                <a href="/cwd/search/{{ a }}/{{ p }}/{{ n }}/1/"
+                                   style="margin: 0px 10px;font-size: 15px">{{ n }}</a>
                             {% endfor %}
                         </ul>
                     </div>
@@ -88,27 +91,35 @@
                         <div class="ui_frt">
                             <!--    如果是第一页，则只显示下一页、尾页 -->
 
-                            <a href="/cwd/find/1/"><input type="button" value="首页" class="ui_input_btn01"></a>
+                            <a href="/cwd/search/{{ a }}/{{ p }}/{{ s }}/1/"><input type="button" value="首页"
+                                                                                    class="ui_input_btn01"></a>
 
                             {% if the_page > 1 %}
-                                <a href="/cwd/find/{{ the_page|add:-1 }}/"><input id='foo1' type="button" value="上一页"
-                                                                                  class="ui_input_btn01"/></a>
+                                <a href="/cwd/search/{{ a }}/{{ p }}/{{ s }}/{{ the_page|add:-1 }}/"><input id='foo1'
+                                                                                                            type="button"
+                                                                                                            value="上一页"
+                                                                                                            class="ui_input_btn01"/></a>
                             {% else %}
-                                <a href="/cwd/find/{{ the_page }}/"><input id='foo1' type="button" value="上一页"
-                                                                           class="ui_input_btn01"/></a>
+                                <a href="/cwd/search/{{ a }}/{{ p }}/{{ s }}/{{ the_page }}/"><input id='foo1'
+                                                                                                     type="button"
+                                                                                                     value="上一页"
+                                                                                                     class="ui_input_btn01"/></a>
                             {% endif %}
 
                             {% if the_page < total_page %}
-                                <a href="/cwd/find/{{ the_page|add:1 }}/"><input type="button" value="下一页"
-                                                                                 class="ui_input_btn01"></a>
+                                <a href="/cwd/search/{{ a }}/{{ p }}/{{ s }}/{{ the_page|add:1 }}/"><input type="button"
+                                                                                                           value="下一页"
+                                                                                                           class="ui_input_btn01"></a>
                             {% else %}
-                                <a href="/cwd/find/{{ the_page }}/"><input type="button" value="下一页"
-                                                                           class="ui_input_btn01"></a>
+                                <a href="/cwd/search/{{ a }}/{{ p }}/{{ s }}/{{ the_page }}/"><input type="button"
+                                                                                                     value="下一页"
+                                                                                                     class="ui_input_btn01"></a>
                             {% endif %}
 
 
-                            <a href="/cwd/find/{{ total_page }}/"><input type="button" value="尾页"
-                                                                         class="ui_input_btn01"></a>
+                            <a href="/cwd/search/{{ a }}/{{ p }}/{{ s }}/{{ total_page }}/"><input type="button"
+                                                                                                   value="尾页"
+                                                                                                   class="ui_input_btn01"></a>
 
 
                             <!--     如果是最后一页，则只显示首页、上一页 -->
@@ -137,4 +148,18 @@
                 <img src="{% static 'images/timg.jpg' %}">
             </div>
             <!-- end block4 -->
+            <script>
+                function search() {
+                    to_page = $('#jumpNumTxt').val().trim();
+                    total_page = $('#foo2').val();
+                    var re = /^[1-9]+.?[0-9]*/;//判断正整数/[1−9]+[0−9]∗]∗/
+                    if (!re.test(to_page)) {
+                        alert('请输入大于0的整数')
+                    } else if (parseInt(to_page) > parseInt(total_page)) {
+                        alert('页码必须小于总页数')
+                    } else {
+                        location.href = '/cwd/search/{{ a }}/{{ p }}/{{ s }}/' + to_page + '/'
+                    }
+                }
+            </script>
 {% endblock %}
