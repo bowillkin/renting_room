@@ -10,16 +10,18 @@
             <div class="zscf_block1 mt30 ">
                 <h2 class="zscf_block1_tit clearfix"><span class="fl"><strong>查询房屋条件</strong></span>
                     <div class="clearfix clear" style="font-size: 20px">
-                        {#                      {% for data in latest_data %}#}
+                        <ul>
+                            <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">全部不限</a>
+                        </ul>
                         <ul>区域:
-                            <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
+                            <a href="/cwd/search/0/{{ p }}/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
                             {% for po in positions %}
                                 <a href="/cwd/search/{{ po.area_id }}/{{ p }}/{{ s }}/1/"
                                    style="margin: 0px 20px;font-size: 15px">{{ po.name }}</a>
                             {% endfor %}
                         </ul>
                         <ul>价格:
-                            <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
+                            <a href="/cwd/search/{{ a }}/0/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
                             <a href="/cwd/search/{{ a }}/0-500/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">500元以下</a>
                             <a href="/cwd/search/{{ a }}/500-1000/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">500-1000元</a>
                             <a href="/cwd/search/{{ a }}/1000-2000/{{ s }}/1/" style="margin: 0px 20px;font-size: 15px">1000-2000元</a>
@@ -28,7 +30,7 @@
                                style="margin: 0px 20px;font-size: 15px">3000以上元</a>
                         </ul>
                         <ul>房型:
-                            <a href="/cwd/find/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
+                            <a href="/cwd/search/{{ a }}/{{ p }}/0/1/" style="margin: 0px 20px;font-size: 15px">不限</a>
                             {% for n in new_type %}
                                 <a href="/cwd/search/{{ a }}/{{ p }}/{{ n }}/1/"
                                    style="margin: 0px 10px;font-size: 15px">{{ n }}</a>
